@@ -40,7 +40,7 @@
         <mysql.version>5.1.46</mysql.version>
         <mybatis.version>3.5.1</mybatis.version>
         <mybatis.spring.version>2.0.1</mybatis.spring.version>
-        <mybatis.plus.version>3.4.1</mybatis.plus.version>
+        <mybatis.plus.version>3.4.3.4</mybatis.plus.version>
         <lang3.version>3.5</lang3.version>
         <pagehelper.version>1.2.3</pagehelper.version>
         <jsoup.version>1.10.2</jsoup.version>
@@ -64,7 +64,7 @@
         <reflections.version>0.9.11</reflections.version>
         <swagger.version>2.9.2</swagger.version>
         <knife4j.version>2.0.2</knife4j.version>
-        <com.alibaba.cloud>2.2.5.RELEASE</com.alibaba.cloud>
+        <com.alibaba.cloud>2.2.7.RELEASE</com.alibaba.cloud>
         <xxl.job.version>2.2.0-SNAPSHOT</xxl.job.version>
     </properties>
     <dependencies>
