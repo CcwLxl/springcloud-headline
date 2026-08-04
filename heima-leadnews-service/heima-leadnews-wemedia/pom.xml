@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>heima-leadnews-article</artifactId>
+    <artifactId>heima-leadnews-wemedia</artifactId>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
@@ -17,10 +17,6 @@
     </properties>
 
     <dependencies>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-freemarker</artifactId>
-        </dependency>
         <!--引入starter模块，模块里有minio-->
         <dependency>
             <groupId>com.heima</groupId>
@@ -28,5 +24,4 @@
             <version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>
-
 </project>
