@@ -1,4 +1,4 @@
-package com.heima.wemedia.config.config;
+package com.heima.wemedia.config;
 
 import com.heima.wemedia.interceptor.WmTokenInterceptor;
 import org.springframework.context.annotation.Configuration;

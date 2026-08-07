@@ -10,3 +10,7 @@ spring:
       config:
         server-addr: 127.0.0.1:8848
         file-extension: yml
+
+tess4j:
+  data-path: F:/all-person-program/springcloud20260730/test
+  language: chi_sim

@@ -6,6 +6,7 @@ import com.heima.article.mapper.ApArticleConfigMapper;
 import com.heima.article.mapper.ApArticleContentMapper;
 import com.heima.article.mapper.ApArticleMapper;
 import com.heima.article.service.ApArticleService;
+import com.heima.article.service.ArticleFreemarkerService;
 import com.heima.common.constants.ArticleConstants;
 import com.heima.model.article.dtos.ArticleDto;
 import com.heima.model.article.dtos.ArticleHomeDto;
@@ -40,6 +41,9 @@ public class ApArticelServiceImpl extends ServiceImpl<ApArticleMapper, ApArticle
 
     @Autowired
     private ApArticleContentMapper apArticleContentMapper;
+
+    @Autowired
+    private ArticleFreemarkerService articleFreemarkerService;
     /**
      *
      * @param dto
@@ -80,6 +84,13 @@ public class ApArticelServiceImpl extends ServiceImpl<ApArticleMapper, ApArticle
      */
     @Override
     public ResponseResult saveArticle(ArticleDto dto) throws InvocationTargetException, IllegalAccessException {
+//        try {
+//            Thread.sleep(3000);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+
+
         //1.检查参数
         if(dto == null){
             return ResponseResult.errorResult(AppHttpCodeEnum.PARAM_INVALID);
@@ -89,7 +100,8 @@ public class ApArticelServiceImpl extends ServiceImpl<ApArticleMapper, ApArticle
         BeanUtils.copyProperties(apArticle,dto);
 
         //2.判断是否存在id
-        if(dto.getId() == null){
+        if(dto.getId() == null || dto.getId() == 0){
+
             //2.1 不存在id  保存  文章  文章配置  文章内容
 
             //保存文章
@@ -106,6 +118,7 @@ public class ApArticelServiceImpl extends ServiceImpl<ApArticleMapper, ApArticle
             apArticleContentMapper.insert(apArticleContent);
 
         }else {
+
             //2.2 存在id   修改  文章  文章内容
 
             //修改  文章
@@ -113,6 +126,7 @@ public class ApArticelServiceImpl extends ServiceImpl<ApArticleMapper, ApArticle
 
             //修改文章内容
             ApArticleContent apArticleContent = apArticleContentMapper.selectOne(Wrappers.<ApArticleContent>lambdaQuery().eq(ApArticleContent::getArticleId, dto.getId()));
+
             if (apArticleContent == null) {
                 // 如果不存在，
                 throw new RuntimeException("app端文章内容不存在");
@@ -126,6 +140,8 @@ public class ApArticelServiceImpl extends ServiceImpl<ApArticleMapper, ApArticle
             apArticleContentMapper.updateById(apArticleContent);
         }
 
+        //异步调用 生成静态文件上传到minio中
+        articleFreemarkerService.buildArticleToMinIO(apArticle,dto.getContent());
 
         //3.结果返回  文章的id
         return ResponseResult.okResult(apArticle.getId());
