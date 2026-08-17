@@ -24,4 +24,13 @@ public interface WmNewsService extends IService<WmNews> {
      * @return
      */
     public ResponseResult submitNews(WmNewsDto dto) throws InvocationTargetException, IllegalAccessException;
+
+
+    /**
+     * 文章上下架
+     * @param dto
+     * @return
+     */
+    public ResponseResult downOrUp(WmNewsDto dto);
+
 }

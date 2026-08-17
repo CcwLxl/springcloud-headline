@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.Enumeration;
 
 public class WmTokenInterceptor implements HandlerInterceptor {
+
+
     /**
      * 前置处理器
      * 得到header中的用户信息，并且存入到当前线程中
@@ -41,7 +43,12 @@ public class WmTokenInterceptor implements HandlerInterceptor {
      */
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, @Nullable ModelAndView modelAndView) throws Exception {
-        WmThreadLocalUtil.clear();
+//        WmThreadLocalUtil.clear();
 
+    }
+
+    @Override
+    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
+        HandlerInterceptor.super.afterCompletion(request, response, handler, ex);
     }
 }

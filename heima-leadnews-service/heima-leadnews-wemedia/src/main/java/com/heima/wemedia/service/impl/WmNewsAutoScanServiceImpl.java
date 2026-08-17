@@ -55,11 +55,11 @@ public class WmNewsAutoScanServiceImpl implements WmNewsAutoScanService {
     public void autoScanWmNews(Integer id) throws InvocationTargetException, IllegalAccessException {
 
         // 等待事务提交 (因为调用该方法的父方法可能还没有提交事务，导致获取id为null)
-        try {
-            Thread.sleep(1000);  // 等待1秒
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            Thread.sleep(1000);  // 等待1秒
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
 
         //1.查询自媒体文章
         WmNews wmNews = wmNewsMapper.selectById(id);
@@ -172,7 +172,7 @@ public class WmNewsAutoScanServiceImpl implements WmNewsAutoScanService {
 
         ResponseResult responseResult = articleClient.saveArticle(dto);
 
-        log.info("saveAppArticle - responseResult: {}", JSON.toJSONString(responseResult));
+        log.info("远程调用saveAppArticle返回值 - responseResult: {}", JSON.toJSONString(responseResult));
         return responseResult;
 
     }

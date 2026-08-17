@@ -2,7 +2,9 @@ org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
   com.heima.common.exception.ExceptionCatch,\
   com.heima.common.swagger.SwaggerConfiguration,\
   com.heima.common.swagger.Swagger2Configuration,\
-  com.heima.common.tess4j.Tess4jClient
+  com.heima.common.tess4j.Tess4jClient,\
+  com.heima.common.redis.CacheService, \
+  com.heima.common.jackson.InitJacksonConfig
 
 #加入这里，就是自动配置，
-#这样，当启动项目时，调用这个common模块时，Spring Boot会自动加载这些配置类，从而实现异常捕获和Swagger配置。
+#这样，当启动项目时，有引入这个“模块的依赖”的服务模块，调用这个common模块时，Spring Boot会自动加载这些配置类，从而实现异常捕获和Swagger配置。

@@ -116,6 +116,7 @@ public class ApArticelServiceImpl extends ServiceImpl<ApArticleMapper, ApArticle
             apArticleContent.setArticleId(apArticle.getId());
             apArticleContent.setContent(dto.getContent());
             apArticleContentMapper.insert(apArticleContent);
+            log.info("ApArticelServiceImpl中:首次--保存app端文章成功");
 
         }else {
 
@@ -138,6 +139,7 @@ public class ApArticelServiceImpl extends ServiceImpl<ApArticleMapper, ApArticle
             }
 
             apArticleContentMapper.updateById(apArticleContent);
+            log.info("ApArticelServiceImpl中: 更新app端文章成功");
         }
 
         //异步调用 生成静态文件上传到minio中
